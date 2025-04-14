@@ -1,0 +1,16 @@
+services:
+  spring-service:
+    build: ./service-java
+    container_name: spring-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - flask-service
+    environment:
+      - flask.url=http://flask-service:5000
+
+  flask-service:
+    build: ./service-python
+    container_name: flask-service
+    ports:
+      - "5000:5000"

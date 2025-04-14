@@ -1,0 +1,12 @@
+# Java
+target/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Général
+.DS_Store
+.env
+.idea/
