@@ -1,0 +1,28 @@
+stages:
+  - test
+  - build
+
+# Job 1 - Test Python (Flask)
+test-python:
+  stage: test
+  image: python:3.11
+  script:
+    - cd service-python
+    - pip install -r requirements.txt
+    - python test_app.py
+
+# Job 2 - Build Java (Spring)
+build-java:
+  stage: build
+  image: maven:3.9.4-eclipse-temurin-17
+  script:
+    - cd service-java
+    - mvn clean compile
+
+# Job 3 - Test Java
+test-java:
+  stage: test
+  image: maven:3.9.4-eclipse-temurin-17
+  script:
+    - cd service-java
+    - mvn test
